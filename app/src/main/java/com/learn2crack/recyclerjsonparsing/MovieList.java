@@ -2,7 +2,10 @@ package com.learn2crack.recyclerjsonparsing;
 
 import com.google.gson.annotations.SerializedName;
 
-public class AndroidVersion {
+import java.util.List;
+
+public class MovieList {
+
     @SerializedName("name")
     private String name;
     @SerializedName("realname")

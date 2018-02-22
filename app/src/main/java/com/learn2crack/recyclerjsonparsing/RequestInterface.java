@@ -5,6 +5,6 @@ import retrofit2.http.GET;
 
 public interface RequestInterface {
 
-    @GET("marvel")
+    @GET("/demos/marvel")
     Call<JSONResponse> getJSON();
 }

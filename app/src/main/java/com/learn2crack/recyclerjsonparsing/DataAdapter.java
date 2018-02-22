@@ -10,10 +10,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
-    private ArrayList<AndroidVersion> android;
+    private ArrayList<MovieList> movie;
 
-    public DataAdapter(ArrayList<AndroidVersion> android) {
-        this.android = android;
+    public DataAdapter(ArrayList<MovieList> movie) {
+        this.movie= movie;
     }
 
     @Override
@@ -25,14 +25,14 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(DataAdapter.ViewHolder viewHolder, int i) {
 
-        viewHolder.movie_name.setText(android.get(i).getName());
-        viewHolder.movie_real.setText(android.get(i).getRealname());
-        viewHolder.movie_team.setText(android.get(i).getTeam());
+        viewHolder.movie_name.setText(movie.get(i).getName());
+        viewHolder.movie_real.setText(movie.get(i).getRealname());
+        viewHolder.movie_team.setText(movie.get(i).getTeam());
     }
 
     @Override
     public int getItemCount() {
-        return android.size();
+        return movie.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -40,9 +40,9 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         public ViewHolder(View view) {
             super(view);
 
-            movie_name = (TextView)view.findViewById(R.id.tv_name);
-            movie_real = (TextView)view.findViewById(R.id.tv_version);
-            movie_team = (TextView)view.findViewById(R.id.tv_api_level);
+            movie_name = (TextView)view.findViewById(R.id.name);
+            movie_real = (TextView)view.findViewById(R.id.realname);
+            movie_team = (TextView)view.findViewById(R.id.team);
 
         }
     }

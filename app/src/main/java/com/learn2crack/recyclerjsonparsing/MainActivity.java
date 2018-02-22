@@ -19,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private ArrayList<AndroidVersion> data;
+    private ArrayList<MovieList> data;
     private DataAdapter adapter;
 
     @Override
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void loadJSON(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://simplifiedcoding.net/demos/")
+                .baseUrl("https://simplifiedcoding.net")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -51,15 +51,25 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<JSONResponse>() {
             @Override
             public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
+                Log.d("MainActivity log ", "Status Code = " + response.code());
                 JSONResponse jsonResponse = response.body();
 
-                Toast.makeText(getApplicationContext(),response.toString(),Toast.LENGTH_SHORT).show();
-
-                data = new ArrayList<>(Arrays.asList(jsonResponse.getAndroid()));
-                adapter=new DataAdapter(data);
+                data = new ArrayList<>(Arrays.asList(jsonResponse.getMovieLists()));
+                adapter = new DataAdapter(data);
                 recyclerView.setAdapter(adapter);
             }
 
+            /*   @Override
+                        public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
+                            JSONResponse jsonResponse = response.body();
+
+                            Toast.makeText(getApplicationContext(),response.toString(),Toast.LENGTH_SHORT).show();
+
+                            data = new ArrayList<>(Arrays.asList(jsonResponse.getMovieLists()));
+                         adapter = new DataAdapter(data);
+                            recyclerView.setAdapter(adapter);
+                        }
+            */
             @Override
             public void onFailure(Call<JSONResponse> call, Throwable t) {
                 Toast.makeText(getApplicationContext(),"onFailure",Toast.LENGTH_SHORT).show();
